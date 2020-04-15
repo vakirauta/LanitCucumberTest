@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Feature/Authorization.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/CategorySelection.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/ChangeAvatar.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/CreateNewTheme.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/EditeTheme.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/ExitProfile.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/ReplyFunction.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/TestSearch.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/ViewNewTopic.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Feature/ViewUsers.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/hooks/Authorization.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/hooks/ChangeAvatar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/hooks/CreateNewTheme.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/hooks/EditingTopic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/hooks/WebDriverSettings.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsAuthorization.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsCategorySelection.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsChangeAvatar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsCreateNewTheme.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsEditTopic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsExitProfile.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsReplyFunction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsSearchTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsViewNewTopic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/steps/StepsViewUsers.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/test/CucumberTest.java" charset="UTF-8" />
+  </component>
+</project>

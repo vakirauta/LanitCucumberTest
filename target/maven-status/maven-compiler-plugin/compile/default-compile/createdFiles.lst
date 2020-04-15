@@ -1,0 +1,12 @@
+hooks\ChangeAvatar.class
+hooks\WebDriverSettings.class
+hooks\ExitProfile.class
+hooks\CategorySelection.class
+hooks\Authorization.class
+hooks\ViewUsers.class
+hooks\CreateNewTheme.class
+hooks\ViewNewTopics.class
+hooks\EditingTopic.class
+hooks\ReplyFunction.class
+hooks\SearchTest.class
+hooks\AddSurvey.class

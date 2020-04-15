@@ -1,0 +1,12 @@
+steps\StepsAddSurvey.class
+steps\StepsCategorySelection.class
+steps\StepsReplyFunction.class
+steps\StepsViewUsers.class
+steps\StepsSearchTest.class
+steps\StepsCreateNewTheme.class
+steps\StepsViewNewTopic.class
+steps\StepsAuthorization.class
+steps\StepsExitProfile.class
+steps\StepsChangeAvatar.class
+test\CucumberTest.class
+steps\StepsEditTopic.class
