@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
+import hooks.CategorySelection;
 import hooks.ReplyFunction;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,11 +19,16 @@ public class StepsReplyFunction {
         return driver;
     }
 
-    @Когда("^выбрать тему$")
-    public void selectTopic() {
+    @Когда("^авторизация для проверки функции Ответить$")
+    public void authorisationReplyFunction(){
         getDriver();
         ReplyFunction replyFunction = new ReplyFunction(driver);
-        replyFunction.authorization();
+        replyFunction.authorization(driver);
+    }
+
+    @Когда("^выбрать тему$")
+    public void selectTopic() {
+        ReplyFunction replyFunction = new ReplyFunction(driver);
         replyFunction.clickTopic();
     }
 

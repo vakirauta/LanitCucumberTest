@@ -3,6 +3,7 @@ package steps;
 import cucumber.api.PendingException;
 import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.Тогда;
+import hooks.CategorySelection;
 import hooks.ChangeAvatar;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,11 +18,16 @@ public class StepsChangeAvatar {
         return driver;
     }
 
-    @Когда("^кликнуть на профиль$")
-    public void clickMyProfile() {
+    @Когда("^авторизация для смены аватара$")
+    public void authorisationChangeAvatar(){
         getDriver();
         ChangeAvatar changeAvatar = new ChangeAvatar(driver);
-        changeAvatar.authorization();
+        changeAvatar.authorization(driver);
+    }
+
+    @Когда("^кликнуть на профиль$")
+    public void clickMyProfile() {
+        ChangeAvatar changeAvatar = new ChangeAvatar(driver);
         changeAvatar.clickBtnProfile();
     }
 

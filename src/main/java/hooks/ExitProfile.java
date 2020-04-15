@@ -15,22 +15,6 @@ public class ExitProfile extends WebDriverSettings{
     private By btnProfile = xpath("//img[@class='user-avatar']");
     private By btnExit = xpath("//button[text()='Выход']");
 
-
-    public void authorization() {
-        WebElement element = driver.findElement(btnLog);
-        element.click();
-        threadSleep();
-        driver.findElement(formLogin).sendKeys(getLogin());
-        driver.findElement(formPass).sendKeys(getPass());
-        clickSubmit();
-    }
-
-    public void clickSubmit(){
-        WebElement element = driver.findElement(btnEntry);
-        element.click();
-        threadSleep();
-    }
-
     public void clickBtnProfile(){
         threadSleep();
         WebElement element = driver.findElement(btnProfile);

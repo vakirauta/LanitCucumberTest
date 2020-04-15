@@ -15,41 +15,26 @@ public class CategorySelection extends WebDriverSettings{
     }
 
     private By btnCategory = xpath("//a[@href='/categories/']");
-    private By selectCategory = xpath("//h4[@class='media-heading']");
+    private By selectCategory = xpath("//h4[@class='media-heading']/a");
     private By selectTopic = xpath("//a[@class='item-title thread-title']");
 
-    public void authorization() {
-        WebElement element = driver.findElement(btnLog);
-        element.click();
-        threadSleep();
-        driver.findElement(formLogin).sendKeys(getLogin());
-        driver.findElement(formPass).sendKeys(getPass());
-        clickSubmit();
-    }
-
-    public void clickSubmit(){
-        WebElement element = driver.findElement(btnEntry);
-        element.click();
-        threadSleep();
-    }
-
     public void clickCategory(){
-        threadSleep();
         WebElement element = driver.findElement(btnCategory);
         element.click();
+        threadSleep();
     }
 
     public void selectWithCategory(){
-        threadSleep();
         WebElement element = driver.findElement(selectCategory);
         element.click();
+        threadSleep();
     }
 
     public void clickTopic(){
-        threadSleep();
         WebElement element = driver.findElement(selectTopic);
         if (element != null) {
             element.click();
+            threadSleep();
         }else{
             throw new PendingException();
         }

@@ -17,21 +17,6 @@ public class ViewUsers extends WebDriverSettings{
     private By btnTopPosters = xpath("//a[@href='/users/active-posters/']");
     private By btnForumTeam = xpath("//a[@href='/users/forum-team/']");
 
-    public void authorization() {
-        WebElement element = driver.findElement(btnLog);
-        element.click();
-        threadSleep();
-        driver.findElement(formLogin).sendKeys(getLogin());
-        driver.findElement(formPass).sendKeys(getPass());
-        clickSubmit();
-    }
-
-    public void clickSubmit(){
-        threadSleep();
-        WebElement element = driver.findElement(btnEntry);
-        element.click();
-    }
-
     public void clickBtnUsers(){
         threadSleep();
         WebElement element = driver.findElement(btnUsers);

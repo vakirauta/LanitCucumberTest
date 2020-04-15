@@ -2,6 +2,7 @@ package steps;
 
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
+import hooks.CategorySelection;
 import hooks.EditingTopic;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,11 +19,16 @@ public class StepsEditTopic {
         return driver;
     }
 
-    @Когда("^кликнуть по вкладе Мои$")
-    public void clickTheMyTab() {
+    @Когда("^авторизация для редактирования темы$")
+    public void authorisationEditTopic(){
         getDriver();
         EditingTopic editing = new EditingTopic(driver);
-        editing.authorization();
+        editing.authorization(driver);
+    }
+
+    @Когда("^кликнуть по вкладе Мои$")
+    public void clickTheMyTab() {
+        EditingTopic editing = new EditingTopic(driver);
         editing.clickBtnMy();
     }
 

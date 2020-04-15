@@ -19,21 +19,6 @@ public class ReplyFunction extends WebDriverSettings{
     private By formBody = xpath("//textarea[@id='editor-textarea']");
     private By btnSendAnswer = xpath("//button[text()='Отправить ответ']");
 
-    public void authorization() {
-        WebElement element = driver.findElement(btnLog);
-        element.click();
-        threadSleep();
-        driver.findElement(formLogin).sendKeys(getLogin());
-        driver.findElement(formPass).sendKeys(getPass());
-        clickSubmit();
-    }
-
-    public void clickSubmit(){
-        WebElement element = driver.findElement(btnEntry);
-        threadSleep();
-        element.click();
-    }
-
     public void clickTopic(){
         threadSleep();
         WebElement element = driver.findElement(selectTopic);

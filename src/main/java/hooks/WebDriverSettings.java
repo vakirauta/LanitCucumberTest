@@ -1,6 +1,8 @@
 package hooks;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -21,6 +23,20 @@ public class WebDriverSettings {
     By formPass = xpath("//input[@id='id_password']");
     By btnEntry = xpath("//button[@type='submit']");
 
+    public void authorization(WebDriver driver) {
+        WebElement element = driver.findElement(btnLog);
+        element.click();
+        threadSleep();
+        driver.findElement(formLogin).sendKeys(getLogin());
+        driver.findElement(formPass).sendKeys(getPass());
+        clickSubmit(driver);
+    }
+
+    public void clickSubmit(WebDriver driver){
+        WebElement element = driver.findElement(btnEntry);
+        element.click();
+        threadSleep();
+    }
     public void threadSleep(){
         try {
             Thread.sleep(1000);
@@ -28,4 +44,5 @@ public class WebDriverSettings {
             e.printStackTrace();
         }
     }
+
 }

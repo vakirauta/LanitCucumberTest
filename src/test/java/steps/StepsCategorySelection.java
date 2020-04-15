@@ -14,11 +14,16 @@ public class StepsCategorySelection {
         return driver;
     }
 
-    @Когда("^выбрать вкладку Категории$")
-    public void clickBtnSelection() {
+    @Когда("^авторизация для выбора темы$")
+    public void authorisationCategorySelection(){
         getDriver();
         CategorySelection selection = new CategorySelection(driver);
-        selection.authorization();
+        selection.authorization(driver);
+    }
+
+    @Когда("^выбрать вкладку Категории$")
+    public void clickBtnSelection() {
+        CategorySelection selection = new CategorySelection(driver);
         selection.clickCategory();
     }
 

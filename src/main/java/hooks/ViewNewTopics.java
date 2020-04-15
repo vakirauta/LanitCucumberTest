@@ -18,21 +18,6 @@ public class ViewNewTopics extends WebDriverSettings{
     private By NewTopic = xpath("//a[@class='item-title thread-title']");
     private By btnLike = xpath("//button[contains(.,'Лайк')]");
 
-    public void authorization() {
-        WebElement element = driver.findElement(btnLog);
-        element.click();
-        threadSleep();
-        driver.findElement(formLogin).sendKeys(getLogin());
-        driver.findElement(formPass).sendKeys(getPass());
-        clickSubmit();
-    }
-
-    public void clickSubmit(){
-        WebElement element = driver.findElement(btnEntry);
-        threadSleep();
-        element.click();
-    }
-
     public void clickBtnNew() {
         threadSleep();
         WebElement element = driver.findElement(btnNew);

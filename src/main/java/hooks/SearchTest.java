@@ -21,20 +21,6 @@ public class SearchTest extends WebDriverSettings{
     private By choiseSearch = xpath("//h5[text()="+userName+"]");
     private By textSearchMessage = xpath("//li[text()='Поиск не дал результатов.']");
 
-    public void authorization() {
-        WebElement element = driver.findElement(btnLog);
-        element.click();
-        threadSleep();
-        driver.findElement(formLogin).sendKeys(getLogin());
-        driver.findElement(formPass).sendKeys(getPass());
-        clickSubmit();
-    }
-    public void clickSubmit(){
-        WebElement element = driver.findElement(btnEntry);
-        element.click();
-        threadSleep();
-    }
-
     public void clickBtnSearch(){
         WebElement element = driver.findElement(btnSearch);
         element.click();

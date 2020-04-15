@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
+import hooks.CategorySelection;
 import hooks.ViewUsers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,11 +17,16 @@ public class StepsViewUsers {
         return driver;
     }
 
-    @Когда("^кликнуть по вкладке Пользователи$")
-    public void clickBtnUsers(){
+    @Когда("^авторизация для просмотра пользователей$")
+    public void authorisationViewUsers(){
         getDriver();
         ViewUsers viewUsers = new ViewUsers(driver);
-        viewUsers.authorization();
+        viewUsers.authorization(driver);
+    }
+
+    @Когда("^кликнуть по вкладке Пользователи$")
+    public void clickBtnUsers(){
+        ViewUsers viewUsers = new ViewUsers(driver);
         viewUsers.clickBtnUsers();
     }
 

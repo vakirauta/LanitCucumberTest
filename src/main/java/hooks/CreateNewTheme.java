@@ -20,23 +20,6 @@ public class CreateNewTheme extends WebDriverSettings{
         this.driver = driver;
     }
 
-
-    public void authorization() {
-        WebElement element = driver.findElement(btnLog);
-        element.click();
-        threadSleep();
-        driver.findElement(formLogin).sendKeys(getLogin());
-        driver.findElement(formPass).sendKeys(getPass());
-        clickSubmit();
-    }
-
-    public void clickSubmit(){
-        WebElement element = driver.findElement(btnEntry);
-        element.click();
-        threadSleep();
-    }
-
-
     public void clickBtnNewTheme(){
         WebElement element = driver.findElement(btnNewTheme);
         element.click();

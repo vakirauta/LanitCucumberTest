@@ -3,6 +3,7 @@ package steps;
 import cucumber.api.PendingException;
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
+import hooks.CategorySelection;
 import hooks.SearchTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,11 +20,17 @@ public class StepsSearchTest {
         driver.get("https://dev.n7lanit.ru/");
         return driver;
     }
-    @Когда("^кликнуть по иконке поиска$")
-    public void clickBtnSearch() {
+
+    @Когда("^авторизация для проверки функции поиска$")
+    public void authorisationSearchTest(){
         getDriver();
         SearchTest searchTest = new SearchTest(driver);
-        searchTest.authorization();
+        searchTest.authorization(driver);
+    }
+
+    @Когда("^кликнуть по иконке поиска$")
+    public void clickBtnSearch() {
+        SearchTest searchTest = new SearchTest(driver);
         searchTest.clickBtnSearch();
     }
 

@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
+import hooks.CategorySelection;
 import hooks.ExitProfile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,11 +16,16 @@ public class StepsExitProfile {
         return driver;
     }
 
-    @Когда("^кликнуть на иконку профиля$")
-    public void clickBtnProfile() {
+    @Когда("^авторизация для проверки выходы из профиля$")
+    public void authorisationExitProfile(){
         getDriver();
         ExitProfile exitProfile = new ExitProfile(driver);
-        exitProfile.authorization();
+        exitProfile.authorization(driver);
+    }
+
+    @Когда("^кликнуть на иконку профиля$")
+    public void clickBtnProfile() {
+        ExitProfile exitProfile = new ExitProfile(driver);
         exitProfile.clickBtnProfile();
     }
 

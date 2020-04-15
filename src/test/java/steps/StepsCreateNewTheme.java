@@ -2,6 +2,7 @@ package steps;
 
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
+import hooks.CategorySelection;
 import hooks.CreateNewTheme;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,11 +20,16 @@ public class StepsCreateNewTheme {
         return driver;
     }
 
+    @Когда("^авторизация для создания темы$")
+    public void authorisationCreateNewTheme(){
+        getDriver();
+        CategorySelection selection = new CategorySelection(driver);
+        selection.authorization(driver);
+    }
+
     @Когда("^кликнуть по кнопке Новая тема$")
     public void clickTheNewTopicButton() {
-        getDriver();
         CreateNewTheme newTheme = new CreateNewTheme(driver);
-        newTheme.authorization();
         newTheme.clickBtnNewTheme();
     }
 
