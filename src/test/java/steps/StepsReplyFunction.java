@@ -1,27 +1,18 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
-import hooks.CategorySelection;
 import hooks.ReplyFunction;
+import hooks.WebDriverSettings;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepsReplyFunction {
 
+    WebDriverSettings settings = new WebDriverSettings();
     private String textMessage;
-
-    private WebDriver driver;
-
-    public WebDriver getDriver(){
-        System.setProperty("webdriver.chrome.driver", "C:\\Drivers_for_Browsers\\chromedriver_win32_79\\chromedriver79.exe");
-        driver = new ChromeDriver();
-        driver.get("https://dev.n7lanit.ru/");
-        return driver;
-    }
+    private WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для проверки функции Ответить$")
     public void authorisationReplyFunction(){
-        getDriver();
         ReplyFunction replyFunction = new ReplyFunction(driver);
         replyFunction.authorization(driver);
     }

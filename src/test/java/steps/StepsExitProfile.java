@@ -1,24 +1,17 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
-import hooks.CategorySelection;
 import hooks.ExitProfile;
+import hooks.WebDriverSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepsExitProfile {
-    private WebDriver driver;
-
-    public WebDriver getDriver(){
-        System.setProperty("webdriver.chrome.driver", "C:\\Drivers_for_Browsers\\chromedriver_win32_79\\chromedriver79.exe");
-        driver = new ChromeDriver();
-        driver.get("https://dev.n7lanit.ru/");
-        return driver;
-    }
+    WebDriverSettings settings = new WebDriverSettings();
+    private WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для проверки выходы из профиля$")
     public void authorisationExitProfile(){
-        getDriver();
         ExitProfile exitProfile = new ExitProfile(driver);
         exitProfile.authorization(driver);
     }

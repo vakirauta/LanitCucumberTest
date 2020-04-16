@@ -1,8 +1,10 @@
 package hooks;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -22,6 +24,14 @@ public class WebDriverSettings {
     By formLogin = xpath("//input[@id='id_username']");
     By formPass = xpath("//input[@id='id_password']");
     By btnEntry = xpath("//button[@type='submit']");
+
+    public WebDriver getDriver(){
+        System.setProperty("webdriver.chrome.driver", "C:\\Drivers_for_Browsers\\chromedriver_win32_79\\chromedriver79.exe");
+//        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://dev.n7lanit.ru/");
+        return driver;
+    }
 
     public void authorization(WebDriver driver) {
         WebElement element = driver.findElement(btnLog);
