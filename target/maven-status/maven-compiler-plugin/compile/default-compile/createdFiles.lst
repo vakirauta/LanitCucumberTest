@@ -1,11 +1,7 @@
-hooks\ChangeAvatar.class
+hooks\AuthorizationPage.class
+hooks\CategoryPage.class
+hooks\SearchPage.class
+hooks\UsersPage.class
+hooks\ProfilePage.class
 hooks\WebDriverSettings.class
-hooks\ExitProfile.class
-hooks\CategorySelection.class
-hooks\Authorization.class
-hooks\ViewUsers.class
-hooks\CreateNewTheme.class
-hooks\ViewNewTopics.class
-hooks\EditingTopic.class
-hooks\ReplyFunction.class
-hooks\SearchTest.class
+hooks\ThemePage.class

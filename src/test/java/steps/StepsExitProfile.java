@@ -1,10 +1,10 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
-import hooks.ExitProfile;
+import cucumber.api.java.ru.Тогда;
+import hooks.ProfilePage;
 import hooks.WebDriverSettings;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepsExitProfile {
     WebDriverSettings settings = new WebDriverSettings();
@@ -12,25 +12,31 @@ public class StepsExitProfile {
 
     @Когда("^авторизация для проверки выходы из профиля$")
     public void authorisationExitProfile(){
-        ExitProfile exitProfile = new ExitProfile(driver);
-        exitProfile.authorization(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.authorization(driver);
     }
 
     @Когда("^кликнуть на иконку профиля$")
     public void clickBtnProfile() {
-        ExitProfile exitProfile = new ExitProfile(driver);
-        exitProfile.clickBtnProfile();
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.clickBtnProfile();
     }
 
     @Когда("^кликнуть кнопку Выход$")
     public void clickBtnOut() {
-        ExitProfile exitProfile = new ExitProfile(driver);
-        exitProfile.clickBtnExit();
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.clickBtnExit();
+    }
+
+    @Тогда("^убедиться что вышли из Профиля методом проверки отсутствия элемента иконки Профиля$")
+    public void assertIconProfile(){
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.assertDisplayIconProfile();
     }
 
     @Когда("^выйти из браузера после выхода из профиля$")
     public void quitBrowser() {
-        ExitProfile exitProfile = new ExitProfile(driver);
-        exitProfile.quitBrowser();
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.quitBrowser();
     }
 }

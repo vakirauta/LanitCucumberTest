@@ -1,9 +1,9 @@
 package steps;
 import cucumber.api.java.ru.Когда;
-import hooks.CategorySelection;
+import cucumber.api.java.ru.Тогда;
+import hooks.CategoryPage;
 import hooks.WebDriverSettings;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepsCategorySelection {
     WebDriverSettings settings = new WebDriverSettings();
@@ -11,31 +11,37 @@ public class StepsCategorySelection {
 
     @Когда("^авторизация для выбора темы$")
     public void authorisationCategorySelection(){
-        CategorySelection selection = new CategorySelection(driver);
+        CategoryPage selection = new CategoryPage(driver);
         selection.authorization(driver);
     }
 
     @Когда("^выбрать вкладку Категории$")
     public void clickBtnSelection() {
-        CategorySelection selection = new CategorySelection(driver);
+        CategoryPage selection = new CategoryPage(driver);
         selection.clickCategory();
+    }
+
+    @Тогда("^убедится что вкладка выбрана проверкой названия Заголовка$")
+    public void assertTitleHeader(){
+        CategoryPage selection = new CategoryPage(driver);
+        selection.assertTitleHeader();
     }
 
     @Когда("^выбрать категорию$")
     public void selectCategory() {
-        CategorySelection selection = new CategorySelection(driver);
+        CategoryPage selection = new CategoryPage(driver);
         selection.selectWithCategory();
     }
 
-    @Когда("^просмотреть любую тему$")
+    @Когда("^просмотреть тему$")
     public void viewTopic() {
-        CategorySelection selection = new CategorySelection(driver);
+        CategoryPage selection = new CategoryPage(driver);
         selection.clickTopic();
     }
 
     @Когда("^выйти из браузера после просмотра темы$")
     public void quitBrowser(){
-        CategorySelection selection = new CategorySelection(driver);
+        CategoryPage selection = new CategoryPage(driver);
         selection.quitBrowser();
     }
 }

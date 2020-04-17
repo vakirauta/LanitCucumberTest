@@ -2,11 +2,12 @@ package steps;
 
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
-import hooks.CategorySelection;
-import hooks.CreateNewTheme;
+import cucumber.api.java.ru.Тогда;
+import hooks.CategoryPage;
+import hooks.ThemePage;
 import hooks.WebDriverSettings;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepsCreateNewTheme {
     WebDriverSettings settings = new WebDriverSettings();
@@ -17,13 +18,13 @@ public class StepsCreateNewTheme {
 
     @Когда("^авторизация для создания темы$")
     public void authorisationCreateNewTheme(){
-        CategorySelection selection = new CategorySelection(driver);
+        CategoryPage selection = new CategoryPage(driver);
         selection.authorization(driver);
     }
 
     @Когда("^кликнуть по кнопке Новая тема$")
     public void clickTheNewTopicButton() {
-        CreateNewTheme newTheme = new CreateNewTheme(driver);
+        ThemePage newTheme = new ThemePage(driver);
         newTheme.clickBtnNewTheme();
     }
 
@@ -35,8 +36,8 @@ public class StepsCreateNewTheme {
 
     @Когда("^ввести текст в поле заголовка темы$")
     public void enterTextInTheSubjectTitleField() {
-        CreateNewTheme newTheme = new CreateNewTheme(driver);
-        newTheme.enterCaptionText(textForTitle);
+        ThemePage newTheme = new ThemePage(driver);
+        Assert.assertEquals(textForTitle,newTheme.enterCaptionText(textForTitle));
     }
 
     @Дано("^основной текст темы (.+)$")
@@ -46,19 +47,25 @@ public class StepsCreateNewTheme {
 
     @Когда("^ввести основной текст для новой темы$")
     public void enterTheMainBodyOfTheTopic() {
-        CreateNewTheme newTheme = new CreateNewTheme(driver);
-        newTheme.enterFieldText(textForBody);
+        ThemePage newTheme = new ThemePage(driver);
+        Assert.assertEquals(textForBody,newTheme.enterFieldText(textForBody));
     }
 
     @Когда("^запостить тему$")
     public void postTopic() {
-        CreateNewTheme newTheme = new CreateNewTheme(driver);
+        ThemePage newTheme = new ThemePage(driver);
         newTheme.clickBtnPublish();
+    }
+
+    @Тогда("^убедится что тема создана проверив ee присутствие в списке тем$")
+    public void assertNewTheme(){
+        ThemePage newTheme = new ThemePage(driver);
+        newTheme.assertNewTheme();
     }
 
     @Когда("^выйти после создания новой темы$")
     public void quitBrowser() {
-        CreateNewTheme newTheme = new CreateNewTheme(driver);
+        ThemePage newTheme = new ThemePage(driver);
         newTheme.quitBrowser();
     }
 }

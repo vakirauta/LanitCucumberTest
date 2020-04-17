@@ -2,8 +2,10 @@ package steps;
 
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
-import hooks.SearchTest;
+import cucumber.api.java.ru.Тогда;
+import hooks.SearchPage;
 import hooks.WebDriverSettings;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class StepsSearchTest {
@@ -16,14 +18,14 @@ public class StepsSearchTest {
 
     @Когда("^авторизация для проверки функции поиска$")
     public void authorisationSearchTest(){
-        SearchTest searchTest = new SearchTest(driver);
-        searchTest.authorization(driver);
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.authorization(driver);
     }
 
     @Когда("^кликнуть по иконке поиска$")
     public void clickBtnSearch() {
-        SearchTest searchTest = new SearchTest(driver);
-        searchTest.clickBtnSearch();
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.clickBtnSearch();
     }
 
     @Дано("^текст для ввода (.*)$")
@@ -33,8 +35,8 @@ public class StepsSearchTest {
 
     @Когда("^ввести текст в поле для поиска$")
     public void inputText() {
-        SearchTest searchTest = new SearchTest(driver);
-        searchTest.clickTextAreaAndInputText(userName);
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.clickTextAreaAndInputText(userName);
     }
 
     @Дано("^если нет совпадений то выводится текст сообщения (.*)$")
@@ -42,15 +44,15 @@ public class StepsSearchTest {
         this.textMessage = text;
     }
 
-    @Когда("^проверяем есть ли совпадения$")
+    @Тогда("^проверяем есть ли совпадения$")
     public void clickOnTheProposedOption(){
-        SearchTest searchTest = new SearchTest(driver);
-        searchTest.getUserName(userName);
+        SearchPage searchPage = new SearchPage(driver);
+        Assert.assertEquals(userName,searchPage.getUserName(userName));
     }
 
     @Когда("^выйти из браузера после проверки поиска$")
     public void quitBrowser() {
-        SearchTest searchTest = new SearchTest(driver);
-        searchTest.quitBrowser();
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.quitBrowser();
     }
 }

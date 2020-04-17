@@ -1,10 +1,12 @@
 package steps;
+import cucumber.api.PendingException;
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
-import hooks.Authorization;
+import hooks.AuthorizationPage;
 import hooks.WebDriverSettings;
+import cucumber.api.java.ru.Тогда;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepsAuthorization {
     WebDriverSettings settings = new WebDriverSettings();
@@ -15,8 +17,14 @@ public class StepsAuthorization {
 
     @Когда("^кликнуть на кнопку Войти$")
     public void clickOnTheLoginButton() {
-        Authorization autho = new Authorization(driver);
+        AuthorizationPage autho = new AuthorizationPage(driver);
         autho.getButton();
+    }
+
+    @Тогда("^проверка что появилось модальное окно авторизации$")
+    public void assertFormAuthorization(){
+        AuthorizationPage autho = new AuthorizationPage(driver);
+        autho.assertFormAuthorization();
     }
 
     @Дано("^логин (.+)$")
@@ -31,25 +39,32 @@ public class StepsAuthorization {
 
     @Когда("^ввести логин$")
     public void inputLogin(){
-        Authorization autho = new Authorization(driver);
-        autho.inputLogin(login);
+        AuthorizationPage autho = new AuthorizationPage(driver);
+        Assert.assertEquals(login,autho.inputLogin(login));
     }
 
     @Когда("^ввести пароль$")
     public void inputPassword(){
-        Authorization autho = new Authorization(driver);
-        autho.inputPass(password);
+        AuthorizationPage autho = new AuthorizationPage(driver);
+        Assert.assertEquals(password,autho.inputPass(password));
     }
 
-    @Когда("^подтвердить авторизацию кнопкой Войти$")
+    @Тогда("^подтвердить авторизацию кнопкой Войти$")
     public void authorization() {
-        Authorization autho = new Authorization(driver);
+        AuthorizationPage autho = new AuthorizationPage(driver);
         autho.clickSubmit();
     }
 
+    @Тогда("^проверить авторизацию убедившись что появилась иконка профиля$")
+    public void assertIconProfile(){
+        AuthorizationPage autho = new AuthorizationPage(driver);
+        autho.assertIconProfile();
+    }
+
+
     @Когда("^выход из браузера после авторизации$")
     public void quitBrowser() {
-        Authorization autho = new Authorization(driver);
+        AuthorizationPage autho = new AuthorizationPage(driver);
         autho.quitBrowser();
     }
 }

@@ -1,41 +1,57 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
-import hooks.ViewNewTopics;
+import cucumber.api.java.ru.Тогда;
+import hooks.ThemePage;
 import hooks.WebDriverSettings;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class StepsLikeFunction {
     WebDriverSettings settings = new WebDriverSettings();
     private WebDriver driver = settings.getDriver();
+    private String textBtn;
 
     @Когда("^авторизация для проверки функции Лайк$")
     public void authorisationViewNewTopic(){
-        ViewNewTopics newTopics = new ViewNewTopics(driver);
+        ThemePage newTopics = new ThemePage(driver);
         newTopics.authorization(driver);
+    }
+    @Когда("^нажать по вкладке Темы$")
+    public void clickTabTheme(){
+        ThemePage newTopics = new ThemePage(driver);
+        newTopics.clickTabTheme();
     }
 
     @Когда("^кликнуть по вкладке Новые$")
     public void clickButtonNew() {
-        ViewNewTopics newTopics = new ViewNewTopics(driver);
+        ThemePage newTopics = new ThemePage(driver);
         newTopics.clickBtnNew();
     }
 
     @Когда("^кликнуть по новой теме$")
     public void clickNewTopic() {
-        ViewNewTopics newTopics = new ViewNewTopics(driver);
+        ThemePage newTopics = new ThemePage(driver);
         newTopics.clickNewTopic();
     }
 
     @Когда("^кликнуть по кнопке Лайк$")
     public void clickBtnLike() {
-        ViewNewTopics newTopics = new ViewNewTopics(driver);
+        ThemePage newTopics = new ThemePage(driver);
         newTopics.clickBtnLike();
     }
 
+    @Тогда("^проверим что вместо вместо кнопки Лайк появится кнопка с текстом (.+)$")
+    public void assertBtnText(String text){
+        ThemePage newTopics = new ThemePage(driver);
+        this.textBtn = text;
+        Assert.assertEquals(textBtn,newTopics.assertBtnText());
+    }
+
+
     @Когда("^выйти из браузера после оценки$")
     public void quitBrowserAfterViewNewTopic() {
-        ViewNewTopics newTopics = new ViewNewTopics(driver);
+        ThemePage newTopics = new ThemePage(driver);
         newTopics.quitBrowser();
     }
 }

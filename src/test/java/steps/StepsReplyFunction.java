@@ -1,8 +1,10 @@
 package steps;
 
 import cucumber.api.java.ru.Когда;
-import hooks.ReplyFunction;
+import cucumber.api.java.ru.Тогда;
+import hooks.ThemePage;
 import hooks.WebDriverSettings;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class StepsReplyFunction {
@@ -13,20 +15,20 @@ public class StepsReplyFunction {
 
     @Когда("^авторизация для проверки функции Ответить$")
     public void authorisationReplyFunction(){
-        ReplyFunction replyFunction = new ReplyFunction(driver);
-        replyFunction.authorization(driver);
+        ThemePage themePage = new ThemePage(driver);
+        themePage.authorization(driver);
     }
 
     @Когда("^выбрать тему$")
     public void selectTopic() {
-        ReplyFunction replyFunction = new ReplyFunction(driver);
-        replyFunction.clickTopic();
+        ThemePage themePage = new ThemePage(driver);
+        themePage.clickTopic();
     }
 
     @Когда("^нажать кнопку Ответить$")
     public void clickBtnAnswer() {
-        ReplyFunction replyFunction = new ReplyFunction(driver);
-        replyFunction.clickBtnAnswer();
+        ThemePage themePage = new ThemePage(driver);
+        themePage.clickBtnAnswer();
     }
 
     @Когда("^текст сообщения (.*)$")
@@ -36,19 +38,26 @@ public class StepsReplyFunction {
 
     @Когда("^Набрать текст сообщения$")
     public void inputTextMessage() {
-        ReplyFunction replyFunction = new ReplyFunction(driver);
-        replyFunction.inputTextAnswer(textMessage);
+        ThemePage themePage = new ThemePage(driver);
+        themePage.inputTextAnswer(textMessage);
     }
 
     @Когда("^нажать кнопку отправить ответ$")
-    public void clckBtnSendAnswer() {
-        ReplyFunction replyFunction = new ReplyFunction(driver);
-        replyFunction.clickBtnAnswer();
+    public void clickBtnSendAnswer() {
+        ThemePage themePage = new ThemePage(driver);
+        themePage.clickBtnSendAnswer();
+    }
+
+    @Тогда("^проверить что ответ отправлен поиском этого сообщения$")
+    public void assertCheckingSentMessage(){
+        ThemePage themePage = new ThemePage(driver);
+        themePage.setMyAnswer(textMessage);
+        Assert.assertEquals(textMessage,themePage.assertSentMEssage(textMessage));
     }
 
     @Когда("^выйти из браузера после отправки ответа$")
     public void quitBrowser(){
-        ReplyFunction replyFunction = new ReplyFunction(driver);
-        replyFunction.quitBrowser();
+        ThemePage themePage = new ThemePage(driver);
+        themePage.quitBrowser();
     }
 }

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: test.CucumberTest
 -------------------------------------------------------------------------------
-Tests run: 71, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 123.682 s - in test.CucumberTest
+Tests run: 81, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 123.831 s - in test.CucumberTest
