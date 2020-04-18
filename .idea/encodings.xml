@@ -2,10 +2,10 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/authorizationSteps/AuthorizationSteps.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/hooks/AuthorizationPage.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/hooks/ProfilePage.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/hooks/ThemePage.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/hooks/WebDriverSettings.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/Feature" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/main/resources/Feature/Authorization.feature" charset="UTF-8" />

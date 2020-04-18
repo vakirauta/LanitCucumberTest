@@ -1,12 +1,14 @@
 package hooks;
 
+import authorizationSteps.AuthorizationSteps;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.xpath;
 
-public class SearchPage extends WebDriverSettings {
+public class SearchPage extends AuthorizationSteps {
   private final WebDriver driver;
 
   public SearchPage(WebDriver driver) {
@@ -20,6 +22,7 @@ public class SearchPage extends WebDriverSettings {
   public void clickBtnSearch() {
     threadSleep();
     WebElement element = driver.findElement(btnSearch);
+    Assert.assertNotNull(element);
     element.click();
   }
 
@@ -30,10 +33,10 @@ public class SearchPage extends WebDriverSettings {
 
   public String getUserName(String name) {
     WebElement element = driver.findElement(xpath(String.format("//h5[text()='%s']", name)));
-    if(element != null){
+    if (element != null) {
       isElementdisplayed(element);
       return element.getText();
-    }else {
+    } else {
       WebElement element1 = driver.findElement(textSearchMessage);
       isElementdisplayed(element1);
       return element1.getText();

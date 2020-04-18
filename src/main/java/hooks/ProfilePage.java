@@ -1,14 +1,17 @@
 package hooks;
 
+import authorizationSteps.AuthorizationSteps;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
-public class ProfilePage extends WebDriverSettings {
+public class ProfilePage extends AuthorizationSteps {
 
   private final WebDriver driver;
 
@@ -25,7 +28,10 @@ public class ProfilePage extends WebDriverSettings {
   public void clickBtnProfile() {
     threadSleep();
     WebElement element = driver.findElement(btnProfile);
-    isElementdisplayed(element);
+    //    WebDriverWait wait = new WebDriverWait(driver,30);
+    //    WebElement element1 =
+    // wait.until(ExpectedConditions.visibilityOfElementLocated(btnProfile));
+    Assert.assertNotNull(element);
     element.click();
   }
 
@@ -36,16 +42,17 @@ public class ProfilePage extends WebDriverSettings {
   }
 
   public void clickBtnGenerateIndividualAvatar() {
-    threadSleep();
-    WebElement element = driver.findElement(btnGenerateIndividualAvatar);
-    isElementdisplayed(element);
-    element.click();
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element1 =
+        wait.until(ExpectedConditions.presenceOfElementLocated(btnGenerateIndividualAvatar));
+    Assert.assertNotNull(element1);
+    element1.click();
   }
 
   public String setTextAlert() {
-    threadSleep();
-    WebElement element = driver.findElement(alert);
-    return element.getText();
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element1 = wait.until(ExpectedConditions.visibilityOfElementLocated(alert));
+    return element1.getText();
   }
 
   public void clickBtnExit() {
@@ -55,9 +62,9 @@ public class ProfilePage extends WebDriverSettings {
     driver.switchTo().alert().accept();
   }
 
-  public void assertDisplayIconProfile(){
+  public void assertDisplayIconProfile() {
     WebElement element = driver.findElement(btnProfile);
-    Assert.assertFalse(element.isDisplayed());
+    Assert.assertNotNull(element);
   }
 
   public void quitBrowser() {

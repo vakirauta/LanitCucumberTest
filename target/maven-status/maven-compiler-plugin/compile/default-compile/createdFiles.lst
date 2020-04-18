@@ -3,5 +3,5 @@ hooks\CategoryPage.class
 hooks\SearchPage.class
 hooks\UsersPage.class
 hooks\ProfilePage.class
-hooks\WebDriverSettings.class
+authorizationSteps\AuthorizationSteps.class
 hooks\ThemePage.class

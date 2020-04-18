@@ -1,15 +1,18 @@
 package hooks;
 
+import authorizationSteps.AuthorizationSteps;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.By.xpath;
 
-public class AuthorizationPage extends WebDriverSettings{
+public class AuthorizationPage extends AuthorizationSteps {
 
   private final WebDriver driver;
-
 
   private By btnLog = xpath("//button[text()='Войти']");
   private By formLogin = xpath("//input[@id='id_username']");
@@ -23,15 +26,16 @@ public class AuthorizationPage extends WebDriverSettings{
   }
 
   public void getButton() {
-    threadSleep();
-    WebElement element = driver.findElement(btnLog);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element = wait.until(ExpectedConditions.visibilityOf(driver.findElement(btnLog)));
     element.click();
   }
 
-  public void assertFormAuthorization(){
-    threadSleep();
-    WebElement element = driver.findElement(formAuthorization);
-     isElementdisplayed(element);
+  public void assertFormAuthorization() {
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element1 =
+        wait.until(ExpectedConditions.presenceOfElementLocated(formAuthorization));
+    Assert.assertNotNull(element1);
   }
 
   public String inputLogin(String login) {
@@ -51,10 +55,10 @@ public class AuthorizationPage extends WebDriverSettings{
     element.click();
   }
 
-  public void assertIconProfile(){
-    threadSleep();
-    WebElement element = driver.findElement(iconProfile);
-    isElementdisplayed(element);
+  public void assertIconProfile() {
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element1 = wait.until(ExpectedConditions.presenceOfElementLocated(iconProfile));
+    Assert.assertNotNull(element1);
   }
 
   public void quitBrowser() {

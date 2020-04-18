@@ -1,12 +1,16 @@
 package hooks;
 
+import authorizationSteps.AuthorizationSteps;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.By.*;
 
-public class ThemePage extends WebDriverSettings {
+public class ThemePage extends AuthorizationSteps {
 
   private final WebDriver driver;
 
@@ -31,41 +35,44 @@ public class ThemePage extends WebDriverSettings {
     element.click();
   }
 
-  public void clickTabTheme(){
+  public void clickTabTheme() {
     threadSleep();
     WebElement element = driver.findElement(tabTheme);
+    Assert.assertNotNull(element);
     element.click();
   }
 
   public void clickNewTopic() {
-    threadSleep();
-    WebElement element = driver.findElement(selectTopic);
-    element.click();
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element1 = wait.until(ExpectedConditions.presenceOfElementLocated(selectTopic));
+    Assert.assertNotNull(element1);
+    element1.click();
   }
 
-  public void clickBtnLike(){
+  public void clickBtnLike() {
+
     WebElement element = driver.findElement(btnLike);
     element.click();
   }
 
-  public String assertBtnText(){
+  public String assertBtnText() {
     threadSleep();
-      WebElement element = driver.findElement(btnLikeText);
-      isElementdisplayed(element);
-      return element.getText();
+    WebElement element = driver.findElement(btnLikeText);
+    return element.getText();
   }
 
   public void clickTopic() {
     threadSleep();
     WebElement element = driver.findElement(selectTopic);
+    Assert.assertNotNull(element);
     element.click();
   }
 
   public void clickBtnAnswer() {
-    threadSleep();
-    WebElement element = driver.findElement(btnAnswer);
-    isElementdisplayed(element);
-    element.click();
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element1 = wait.until(ExpectedConditions.presenceOfElementLocated(btnAnswer));
+    Assert.assertNotNull(element1);
+    element1.click();
   }
 
   public void inputTextAnswer(String text) {
@@ -79,9 +86,9 @@ public class ThemePage extends WebDriverSettings {
     element.click();
   }
 
-  public String assertSentMessage(String text){
+  public String assertSentMessage(String text) {
     threadSleep();
-    WebElement element = driver.findElement(xpath(String.format("//p[text()= '%s']",text)));
+    WebElement element = driver.findElement(xpath(String.format("//p[text()= '%s']", text)));
     isElementdisplayed(element);
     return element.getText();
   }
@@ -108,10 +115,10 @@ public class ThemePage extends WebDriverSettings {
     element.click();
   }
 
-  public void assertNewTheme(){
+  public void assertNewTheme() {
     clickTabTheme();
     WebElement element = driver.findElement(selectTopic);
-    isElementdisplayed(element);
+    Assert.assertNotNull(element);
   }
 
   public ThemePage(WebDriver driver) {
@@ -144,7 +151,7 @@ public class ThemePage extends WebDriverSettings {
     element.submit();
   }
 
-  public String getNewTextTopic(String text){
+  public String getNewTextTopic(String text) {
     WebElement element = driver.findElement(xpath(String.format("//p[text()='%s']", text)));
     return element.getText();
   }

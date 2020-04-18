@@ -1,12 +1,14 @@
 package hooks;
 
+import authorizationSteps.AuthorizationSteps;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.xpath;
 
-public class UsersPage extends WebDriverSettings {
+public class UsersPage extends AuthorizationSteps {
   private final WebDriver driver;
 
   public UsersPage(WebDriver driver) {
@@ -20,6 +22,7 @@ public class UsersPage extends WebDriverSettings {
   public void clickBtnUsers() {
     threadSleep();
     WebElement element = driver.findElement(btnUsers);
+    Assert.assertNotNull(element);
     element.click();
   }
 

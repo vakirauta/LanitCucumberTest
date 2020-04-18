@@ -4,27 +4,22 @@ import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.Тогда;
 import hooks.SearchPage;
-import hooks.WebDriverSettings;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 
 public class StepsSearchTest {
-
-    WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
 
     private String userName;
     private String textMessage;
 
     @Когда("^авторизация для проверки функции поиска$")
     public void authorisationSearchTest(){
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.authorization(driver);
+        SearchPage searchPage = new SearchPage(precondition.driver);
+        searchPage.authorization(precondition.driver);
     }
 
     @Когда("^кликнуть по иконке поиска$")
     public void clickBtnSearch() {
-        SearchPage searchPage = new SearchPage(driver);
+        SearchPage searchPage = new SearchPage(precondition.driver);
         searchPage.clickBtnSearch();
     }
 
@@ -35,7 +30,7 @@ public class StepsSearchTest {
 
     @Когда("^ввести текст в поле для поиска$")
     public void inputText() {
-        SearchPage searchPage = new SearchPage(driver);
+        SearchPage searchPage = new SearchPage(precondition.driver);
         searchPage.clickTextAreaAndInputText(userName);
     }
 
@@ -46,13 +41,13 @@ public class StepsSearchTest {
 
     @Тогда("^проверяем есть ли совпадения$")
     public void clickOnTheProposedOption(){
-        SearchPage searchPage = new SearchPage(driver);
+        SearchPage searchPage = new SearchPage(precondition.driver);
         Assert.assertEquals(userName,searchPage.getUserName(userName));
     }
 
     @Когда("^выйти из браузера после проверки поиска$")
     public void quitBrowser() {
-        SearchPage searchPage = new SearchPage(driver);
+        SearchPage searchPage = new SearchPage(precondition.driver);
         searchPage.quitBrowser();
     }
 }

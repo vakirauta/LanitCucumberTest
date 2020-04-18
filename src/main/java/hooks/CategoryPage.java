@@ -1,5 +1,6 @@
 package hooks;
 
+import authorizationSteps.AuthorizationSteps;
 import cucumber.api.PendingException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.xpath;
 
-public class CategoryPage extends WebDriverSettings {
+public class CategoryPage extends AuthorizationSteps {
   private final WebDriver driver;
 
   public CategoryPage(WebDriver driver) {
