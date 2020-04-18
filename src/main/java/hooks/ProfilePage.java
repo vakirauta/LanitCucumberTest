@@ -28,9 +28,6 @@ public class ProfilePage extends AuthorizationSteps {
   public void clickBtnProfile() {
     threadSleep();
     WebElement element = driver.findElement(btnProfile);
-    //    WebDriverWait wait = new WebDriverWait(driver,30);
-    //    WebElement element1 =
-    // wait.until(ExpectedConditions.visibilityOfElementLocated(btnProfile));
     Assert.assertNotNull(element);
     element.click();
   }
