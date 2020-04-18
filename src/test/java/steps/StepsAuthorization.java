@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsAuthorization {
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     private String login;
     private String password;

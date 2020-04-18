@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class StepsViewUsers {
 
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для просмотра пользователей$")
     public void authorisationViewUsers(){

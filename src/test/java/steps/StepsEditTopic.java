@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsEditTopic {
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     private String newText;
 
@@ -58,7 +58,7 @@ public class StepsEditTopic {
     @Тогда("^убедиться что тема изменена проверкой нового текста$")
     public void assertAlertMessage(){
         ThemePage editing = new ThemePage(driver);
-        editing.setNewTextTopic(newText);
+//        editing.setNewTextTopic(newText);
         Assert.assertEquals(newText,editing.getNewTextTopic(newText));
     }
 

@@ -11,7 +11,6 @@ import static org.openqa.selenium.By.xpath;
 public class ProfilePage extends WebDriverSettings {
 
   private final WebDriver driver;
-  private String textAlert;
 
   private By btnProfile = xpath("//img[@class='user-avatar']");
   private By btnChangeAvatar = xpath("//button[@class='btn-link']");
@@ -26,41 +25,32 @@ public class ProfilePage extends WebDriverSettings {
   public void clickBtnProfile() {
     threadSleep();
     WebElement element = driver.findElement(btnProfile);
-    isElementDisplayed(element);
+    isElementdisplayed(element);
     element.click();
   }
 
   public void clickBtnChangeAvatar() {
-    threadSleep();
     WebElement element = driver.findElement(btnChangeAvatar);
-    isElementDisplayed(element);
+    isElementdisplayed(element);
     element.click();
   }
 
   public void clickBtnGenerateIndividualAvatar() {
     threadSleep();
     WebElement element = driver.findElement(btnGenerateIndividualAvatar);
-    isElementDisplayed(element);
+    isElementdisplayed(element);
     element.click();
   }
 
-  public void setTextAlert() {
+  public String setTextAlert() {
     threadSleep();
     WebElement element = driver.findElement(alert);
-    isElementDisplayed(element);
-    String text = element.getText();
-    this.textAlert = text;
-  }
-
-  public String getTextAlert() {
-    setTextAlert();
-    return textAlert;
+    return element.getText();
   }
 
   public void clickBtnExit() {
-    threadSleep();
     WebElement element = driver.findElement(btnExit);
-    isElementDisplayed(element);
+    isElementdisplayed(element);
     element.click();
     driver.switchTo().alert().accept();
   }

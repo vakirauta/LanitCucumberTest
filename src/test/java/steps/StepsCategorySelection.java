@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsCategorySelection {
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для выбора темы$")
     public void authorisationCategorySelection(){

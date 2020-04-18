@@ -11,7 +11,7 @@ public class StepsReplyFunction {
 
     WebDriverSettings settings = new WebDriverSettings();
     private String textMessage;
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для проверки функции Ответить$")
     public void authorisationReplyFunction(){
@@ -51,8 +51,7 @@ public class StepsReplyFunction {
     @Тогда("^проверить что ответ отправлен поиском этого сообщения$")
     public void assertCheckingSentMessage(){
         ThemePage themePage = new ThemePage(driver);
-        themePage.setMyAnswer(textMessage);
-        Assert.assertEquals(textMessage,themePage.assertSentMEssage(textMessage));
+        Assert.assertEquals(textMessage,themePage.assertSentMessage(textMessage));
     }
 
     @Когда("^выйти из браузера после отправки ответа$")

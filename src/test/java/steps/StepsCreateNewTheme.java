@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsCreateNewTheme {
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     private String textForTitle;
     private String textForBody;

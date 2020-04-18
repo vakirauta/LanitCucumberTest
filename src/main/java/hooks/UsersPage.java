@@ -20,21 +20,16 @@ public class UsersPage extends WebDriverSettings {
   public void clickBtnUsers() {
     threadSleep();
     WebElement element = driver.findElement(btnUsers);
-    isElementDisplayed(element);
     element.click();
   }
 
   public void clickTopPosters() {
-    threadSleep();
     WebElement element = driver.findElement(btnTopPosters);
-    isElementDisplayed(element);
     element.click();
   }
 
   public void clickForumTeam() {
-    threadSleep();
     WebElement element = driver.findElement(btnForumTeam);
-    isElementDisplayed(element);
     element.click();
   }
 

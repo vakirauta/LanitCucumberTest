@@ -9,8 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsLikeFunction {
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
-    private String textBtn;
+    private final WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для проверки функции Лайк$")
     public void authorisationViewNewTopic(){
@@ -41,13 +40,11 @@ public class StepsLikeFunction {
         newTopics.clickBtnLike();
     }
 
-    @Тогда("^проверим что вместо вместо кнопки Лайк появится кнопка с текстом (.+)$")
+    @Тогда("^проверим что вместо кнопки Лайк появится кнопка с текстом (.+)$")
     public void assertBtnText(String text){
         ThemePage newTopics = new ThemePage(driver);
-        this.textBtn = text;
-        Assert.assertEquals(textBtn,newTopics.assertBtnText());
+        Assert.assertEquals(text,newTopics.assertBtnText());
     }
-
 
     @Когда("^выйти из браузера после оценки$")
     public void quitBrowserAfterViewNewTopic() {

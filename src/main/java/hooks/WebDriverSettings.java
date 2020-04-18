@@ -41,21 +41,18 @@ public class WebDriverSettings {
   public void authorization(WebDriver driver) {
     WebElement element = driver.findElement(btnLog);
     element.click();
-    threadSleep();
     driver.findElement(formLogin).sendKeys(getLogin());
     driver.findElement(formPass).sendKeys(getPass());
     clickSubmit(driver);
   }
 
-  public void isElementDisplayed(WebElement element) {
+  public void isElementdisplayed(WebElement element) {
     Assert.assertTrue(element.isDisplayed());
   }
 
   public void clickSubmit(WebDriver driver) {
     WebElement element = driver.findElement(btnEntry);
-    isElementDisplayed(element);
     element.click();
-    threadSleep();
   }
 
   public void threadSleep() {

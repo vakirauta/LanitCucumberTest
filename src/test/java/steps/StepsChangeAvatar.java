@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsChangeAvatar {
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для смены аватара$")
     public void authorisationChangeAvatar(){
@@ -38,7 +38,7 @@ public class StepsChangeAvatar {
       @Тогда("^проверка алерт сообщение (.*)$")
       public void getTextAlertMessage(String string){
           ProfilePage profilePage = new ProfilePage(driver);
-          Assert.assertEquals(profilePage.getTextAlert(),string);
+          Assert.assertEquals(string,profilePage.setTextAlert());
       }
 
       @Когда("^выйти из браузера после изменения аватара$")

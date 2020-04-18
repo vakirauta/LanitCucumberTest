@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsExitProfile {
     WebDriverSettings settings = new WebDriverSettings();
-    private WebDriver driver = settings.getDriver();
+    private final WebDriver driver = settings.getDriver();
 
     @Когда("^авторизация для проверки выходы из профиля$")
     public void authorisationExitProfile(){

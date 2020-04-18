@@ -25,14 +25,13 @@ public class CategoryPage extends WebDriverSettings {
   }
 
   public void clickCategory() {
+    threadSleep();
     WebElement element = driver.findElement(btnCategory);
     isElementdisplayed(element);
     element.click();
-    threadSleep();
   }
 
   public void assertTitleHeader() {
-    threadSleep();
     WebElement element = driver.findElement(titleHeader);
     isElementdisplayed(element);
   }
@@ -41,7 +40,6 @@ public class CategoryPage extends WebDriverSettings {
     WebElement element = driver.findElement(selectCategory);
     if (element != null) {
       element.click();
-      threadSleep();
     } else {
       throw new PendingException("Категория отсутствует");
     }
@@ -51,7 +49,6 @@ public class CategoryPage extends WebDriverSettings {
     WebElement element = driver.findElement(selectTopic);
     if (element != null) {
       element.click();
-      threadSleep();
     } else {
       throw new PendingException("Тема отсутствует");
     }
