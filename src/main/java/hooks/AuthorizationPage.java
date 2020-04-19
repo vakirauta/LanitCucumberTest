@@ -1,6 +1,5 @@
 package hooks;
 
-import authorizationSteps.AuthorizationSteps;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.By.xpath;
 
-public class AuthorizationPage extends AuthorizationSteps {
+public class AuthorizationPage{
 
   private final WebDriver driver;
 
@@ -59,17 +58,10 @@ public class AuthorizationPage extends AuthorizationSteps {
     WebDriverWait wait = new WebDriverWait(driver, 30);
     WebElement element1 = wait.until(ExpectedConditions.presenceOfElementLocated(iconProfile));
     Assert.assertNotNull(element1);
+    driver.quit();
   }
 
   public void quitBrowser() {
     driver.quit();
-  }
-
-  public void threadSleep() {
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
   }
 }

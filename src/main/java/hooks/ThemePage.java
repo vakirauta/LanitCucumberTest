@@ -1,19 +1,23 @@
 package hooks;
 
-import authorizationSteps.AuthorizationSteps;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.By.*;
 
-public class ThemePage extends AuthorizationSteps {
+public class ThemePage{
 
-  private final WebDriver driver;
+  private WebDriver driver;
 
+  public String login = "Alexandr11";
+  public String pass = "1ybrjkfc89";
+
+  private By btnLog = xpath("//button[text()='Войти']");
+  private By formLogin = xpath("//input[@id='id_username']");
+  private By formPass = xpath("//input[@id='id_password']");
+  private By btnEntry = xpath("//button[@type='submit']");
   private By btnMy = xpath("//div[@id='page-mount']//li[2]/a");
   private By tabTheme = xpath("//a[contains(text(),'Темы')]");
   private By btnEdit = xpath("//button[@class='hidden-xs btn btn-default btn-sm pull-right']");
@@ -21,7 +25,7 @@ public class ThemePage extends AuthorizationSteps {
   private By btnNew = xpath("//a[contains(text(),'Новые')]");
   private By btnLike = xpath("//button[text()='Лайк']");
   private By selectTopic = xpath("//a[@class='item-title thread-title']");
-  private By btnAnswer = xpath("//button[text()='Ответить']");
+  private By btnAnswer = xpath("//button[@class='btn btn-primary btn-sm pull-right']");
   private By formBody = xpath("//textarea[@id='editor-textarea']");
   private By btnSendAnswer = xpath("//button[text()='Отправить ответ']");
   private By btnNewTheme = xpath("//button[text()='Новая тема']");
@@ -30,66 +34,84 @@ public class ThemePage extends AuthorizationSteps {
   private By btnPublish = xpath("//button[text()='Опубликовать тему']");
   private By btnLikeText = xpath("//button[text()='Нравится']");
 
+  public void authorization() {
+    WebElement element = driver.findElement(btnLog);
+    element.click();
+    driver.findElement(formLogin).sendKeys(login);
+    driver.findElement(formPass).sendKeys(pass);
+    clickSubmit(driver);
+  }
+
+  public void clickSubmit(WebDriver driver) {
+    WebElement element = driver.findElement(btnEntry);
+    element.click();
+  }
+
   public void clickBtnNew() {
     WebElement element = driver.findElement(btnNew);
     element.click();
   }
 
   public void clickTabTheme() {
-    threadSleep();
+    driver.navigate().refresh();
     WebElement element = driver.findElement(tabTheme);
-    Assert.assertNotNull(element);
+    Assert.assertTrue(element.isDisplayed());
+    element.click();
+  }
+
+  public void clickTabThemes() {
+    driver.navigate().refresh();
+    WebElement element = driver.findElement(tabTheme);
+    Assert.assertTrue(element.isDisplayed());
     element.click();
   }
 
   public void clickNewTopic() {
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-    WebElement element1 = wait.until(ExpectedConditions.presenceOfElementLocated(selectTopic));
-    Assert.assertNotNull(element1);
-    element1.click();
+    WebElement element = driver.findElement(selectTopic);
+    Assert.assertNotNull(element);
+    element.click();
   }
 
   public void clickBtnLike() {
-
+    driver.navigate().refresh();
     WebElement element = driver.findElement(btnLike);
     element.click();
   }
 
   public String assertBtnText() {
-    threadSleep();
     WebElement element = driver.findElement(btnLikeText);
     return element.getText();
   }
 
   public void clickTopic() {
-    threadSleep();
+    driver.navigate().refresh();
     WebElement element = driver.findElement(selectTopic);
     Assert.assertNotNull(element);
     element.click();
   }
 
   public void clickBtnAnswer() {
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-    WebElement element1 = wait.until(ExpectedConditions.presenceOfElementLocated(btnAnswer));
-    Assert.assertNotNull(element1);
-    element1.click();
+    driver.navigate().refresh();
+    WebElement element = driver.findElement(btnAnswer);
+    Assert.assertNotNull(element);
+    element.click();
   }
 
   public void inputTextAnswer(String text) {
     WebElement element = driver.findElement(formBody);
+    element.clear();
     element.sendKeys(text);
   }
 
   public void clickBtnSendAnswer() {
-    threadSleep();
     WebElement element = driver.findElement(btnSendAnswer);
+    Assert.assertNotNull(element);
     element.click();
   }
 
   public String assertSentMessage(String text) {
-    threadSleep();
-    WebElement element = driver.findElement(xpath(String.format("//p[text()= '%s']", text)));
-    isElementdisplayed(element);
+    WebElement element = driver.findElement(xpath(String.format("//p[text()='%s']", text)));
+    Assert.assertTrue(element.isDisplayed());
     return element.getText();
   }
 
@@ -119,6 +141,7 @@ public class ThemePage extends AuthorizationSteps {
     clickTabTheme();
     WebElement element = driver.findElement(selectTopic);
     Assert.assertNotNull(element);
+    driver.quit();
   }
 
   public ThemePage(WebDriver driver) {

@@ -1,45 +1,38 @@
 package steps;
 
+import authorizationSteps.GetDriver;
 import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.Тогда;
 import hooks.ProfilePage;
 import org.junit.Assert;
 
 public class StepsChangeAvatar {
+  GetDriver get = new GetDriver();
+  ProfilePage profilePage = new ProfilePage(get.getDriver());
 
-    @Когда("^авторизация для смены аватара$")
-    public void authorisationChangeAvatar(){
-        ProfilePage profilePage = new ProfilePage(precondition.driver);
-        profilePage.authorization(precondition.driver);
-    }
+  @Когда("^авторизация для смены аватара$")
+  public void authorisationChangeAvatar() {
+    profilePage.authorization();
+  }
 
-    @Когда("^кликнуть на профиль$")
-    public void clickMyProfile() {
-        ProfilePage profilePage = new ProfilePage(precondition.driver);
-        profilePage.clickBtnProfile();
-    }
+  @Когда("^кликнуть на профиль$")
+  public void clickMyProfile() {
+    profilePage.clickBtnProfile();
+  }
 
-    @Когда("^кликнуть Изменить аватар$")
-    public void clickChangeAvatar() {
-        ProfilePage profilePage = new ProfilePage(precondition.driver);
-        profilePage.clickBtnChangeAvatar();
-    }
+  @Когда("^кликнуть Изменить аватар$")
+  public void clickChangeAvatar() {
+    profilePage.clickBtnChangeAvatar();
+  }
 
-    @Когда("^кликнуть Сгенерировать индивидуальную аватарку$")
-    public void clickGenerateAnIndividualAvatar() {
-        ProfilePage profilePage = new ProfilePage(precondition.driver);
-        profilePage.clickBtnGenerateIndividualAvatar();
-    }
+  @Когда("^кликнуть Сгенерировать индивидуальную аватарку$")
+  public void clickGenerateAnIndividualAvatar() {
+    profilePage.clickBtnGenerateIndividualAvatar();
+  }
 
-      @Тогда("^проверка алерт сообщение (.*)$")
-      public void getTextAlertMessage(String string){
-          ProfilePage profilePage = new ProfilePage(precondition.driver);
-          Assert.assertEquals(string,profilePage.setTextAlert());
-      }
-
-      @Когда("^выйти из браузера после изменения аватара$")
-      public void quitBrowser() {
-          ProfilePage profilePage = new ProfilePage(precondition.driver);
-          profilePage.quitBrowser();
-      }
+  @Тогда("^проверка алерт сообщение (.*)$")
+  public void getTextAlertMessage(String string) {
+    Assert.assertEquals(string, profilePage.setTextAlert());
+    profilePage.quitBrowser();
+  }
 }

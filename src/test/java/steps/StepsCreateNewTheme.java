@@ -1,67 +1,43 @@
 package steps;
 
-import cucumber.api.java.ru.Дано;
+import authorizationSteps.GetDriver;
 import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.Тогда;
-import hooks.CategoryPage;
 import hooks.ThemePage;
 import org.junit.Assert;
 
 public class StepsCreateNewTheme {
-
-    private String textForTitle;
-    private String textForBody;
+    GetDriver get = new GetDriver();
+    ThemePage newTheme = new ThemePage(get.getDriver());
 
     @Когда("^авторизация для создания темы$")
     public void authorisationCreateNewTheme(){
-        CategoryPage selection = new CategoryPage(precondition.driver);
-        selection.authorization(precondition.driver);
+        newTheme.authorization();
     }
 
     @Когда("^кликнуть по кнопке Новая тема$")
     public void clickTheNewTopicButton() {
-        ThemePage newTheme = new ThemePage(precondition.driver);
         newTheme.clickBtnNewTheme();
     }
 
-    @Дано("^текст заголовка для новой темы (.+)$")
-    public void getTextForTitle(String text){
-        this.textForTitle = text;
+    @Когда("^ввести текст (.+) в поле заголовка темы$")
+    public void enterTextInTheSubjectTitleField(String text) {
+        Assert.assertEquals(text,newTheme.enterCaptionText(text));
     }
 
-
-    @Когда("^ввести текст в поле заголовка темы$")
-    public void enterTextInTheSubjectTitleField() {
-        ThemePage newTheme = new ThemePage(precondition.driver);
-        Assert.assertEquals(textForTitle,newTheme.enterCaptionText(textForTitle));
-    }
-
-    @Дано("^основной текст темы (.+)$")
-    public void getTextForBody(String text){
-        this.textForBody = text;
-    }
-
-    @Когда("^ввести основной текст для новой темы$")
-    public void enterTheMainBodyOfTheTopic() {
-        ThemePage newTheme = new ThemePage(precondition.driver);
-        Assert.assertEquals(textForBody,newTheme.enterFieldText(textForBody));
+    @Когда("^ввести основной текст (.+) для новой темы$")
+    public void enterTheMainBodyOfTheTopic(String text) {
+        Assert.assertEquals(text,newTheme.enterFieldText(text));
     }
 
     @Когда("^запостить тему$")
     public void postTopic() {
-        ThemePage newTheme = new ThemePage(precondition.driver);
         newTheme.clickBtnPublish();
     }
 
     @Тогда("^убедится что тема создана проверив ee присутствие в списке тем$")
     public void assertNewTheme(){
-        ThemePage newTheme = new ThemePage(precondition.driver);
         newTheme.assertNewTheme();
     }
 
-    @Когда("^выйти после создания новой темы$")
-    public void quitBrowser() {
-        ThemePage newTheme = new ThemePage(precondition.driver);
-        newTheme.quitBrowser();
-    }
 }

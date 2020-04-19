@@ -1,57 +1,43 @@
 package steps;
 
+import authorizationSteps.GetDriver;
 import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.Тогда;
 import hooks.ThemePage;
 import org.junit.Assert;
 
 public class StepsReplyFunction {
-    private String textMessage;
+    GetDriver get = new GetDriver();
+    ThemePage themePage = new ThemePage(get.getDriver());
 
     @Когда("^авторизация для проверки функции Ответить$")
     public void authorisationReplyFunction(){
-        ThemePage themePage = new ThemePage(precondition.driver);
-        themePage.authorization(precondition.driver);
+        themePage.authorization();
     }
 
     @Когда("^выбрать тему$")
     public void selectTopic() {
-        ThemePage themePage = new ThemePage(precondition.driver);
         themePage.clickTopic();
     }
 
     @Когда("^нажать кнопку Ответить$")
     public void clickBtnAnswer() {
-        ThemePage themePage = new ThemePage(precondition.driver);
         themePage.clickBtnAnswer();
     }
 
-    @Когда("^текст сообщения (.*)$")
-    public void textMessages(String text) {
-        this.textMessage = text;
+    @Когда("^Набрать текст сообщения (.*)$")
+    public void inputTextMessage(String text) {
+        themePage.inputTextAnswer(text);
     }
 
-    @Когда("^Набрать текст сообщения$")
-    public void inputTextMessage() {
-        ThemePage themePage = new ThemePage(precondition.driver);
-        themePage.inputTextAnswer(textMessage);
-    }
-
-    @Когда("^нажать кнопку отправить ответ$")
+    @Когда("^нажать кнопку Отправить ответ$")
     public void clickBtnSendAnswer() {
-        ThemePage themePage = new ThemePage(precondition.driver);
         themePage.clickBtnSendAnswer();
     }
 
-    @Тогда("^проверить что ответ отправлен поиском этого сообщения$")
-    public void assertCheckingSentMessage(){
-        ThemePage themePage = new ThemePage(precondition.driver);
-        Assert.assertEquals(textMessage,themePage.assertSentMessage(textMessage));
-    }
-
-    @Когда("^выйти из браузера после отправки ответа$")
-    public void quitBrowser(){
-        ThemePage themePage = new ThemePage(precondition.driver);
+    @Тогда("^проверить что ответ отправлен поиском сообщения (.*)$")
+    public void assertCheckingSentMessage(String text){
+        Assert.assertEquals(text,themePage.assertSentMessage(text));
         themePage.quitBrowser();
     }
 }

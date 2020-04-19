@@ -1,7 +1,5 @@
 package hooks;
 
-import authorizationSteps.AuthorizationSteps;
-import cucumber.api.PendingException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.junit.Assert;
@@ -9,14 +7,21 @@ import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.xpath;
 
-public class CategoryPage extends AuthorizationSteps {
-  private final WebDriver driver;
+public class CategoryPage {
+  private WebDriver driver;
+
+  public String login = "Alexandr11";
+  public String pass = "1ybrjkfc89";
 
   public CategoryPage(WebDriver driver) {
     this.driver = driver;
   }
 
-  private By btnCategory = xpath("//a[@href='/categories/']");
+  private By btnLog = xpath("//button[text()='Войти']");
+  private By formLogin = xpath("//input[@id='id_username']");
+  private By formPass = xpath("//input[@id='id_password']");
+  private By btnEntry = xpath("//button[@type='submit']");
+  private By btnCategory = xpath("//li[2]/a");
   private By selectCategory = xpath("//h4[@class='media-heading']/a");
   private By selectTopic = xpath("//a[@class='item-title thread-title']");
   private By titleHeader = xpath("//div[@class='container']//h1");
@@ -25,10 +30,22 @@ public class CategoryPage extends AuthorizationSteps {
     Assert.assertTrue(element.isDisplayed());
   }
 
+  public void authorization() {
+    WebElement element = driver.findElement(btnLog);
+    element.click();
+    driver.findElement(formLogin).sendKeys(login);
+    driver.findElement(formPass).sendKeys(pass);
+    clickSubmit();
+  }
+
+  public void clickSubmit() {
+    WebElement element = driver.findElement(btnEntry);
+    element.click();
+  }
+
   public void clickCategory() {
-    threadSleep();
+    driver.navigate().refresh();
     WebElement element = driver.findElement(btnCategory);
-    isElementdisplayed(element);
     element.click();
   }
 
@@ -39,20 +56,13 @@ public class CategoryPage extends AuthorizationSteps {
 
   public void selectWithCategory() {
     WebElement element = driver.findElement(selectCategory);
-    if (element != null) {
-      element.click();
-    } else {
-      throw new PendingException("Категория отсутствует");
-    }
+    element.click();
   }
 
   public void clickTopic() {
     WebElement element = driver.findElement(selectTopic);
-    if (element != null) {
-      element.click();
-    } else {
-      throw new PendingException("Тема отсутствует");
-    }
+    element.click();
+    driver.quit();
   }
 
   public void quitBrowser() {

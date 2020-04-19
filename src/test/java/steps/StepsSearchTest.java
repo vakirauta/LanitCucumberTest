@@ -1,53 +1,28 @@
 package steps;
 
-import cucumber.api.java.ru.Дано;
+import authorizationSteps.GetDriver;
 import cucumber.api.java.ru.Когда;
-import cucumber.api.java.ru.Тогда;
 import hooks.SearchPage;
 import org.junit.Assert;
 
 public class StepsSearchTest {
-
-    private String userName;
-    private String textMessage;
+    GetDriver get = new GetDriver();
+    SearchPage searchPage = new SearchPage(get.getDriver());
 
     @Когда("^авторизация для проверки функции поиска$")
     public void authorisationSearchTest(){
-        SearchPage searchPage = new SearchPage(precondition.driver);
-        searchPage.authorization(precondition.driver);
+        searchPage.authorization();
     }
 
     @Когда("^кликнуть по иконке поиска$")
     public void clickBtnSearch() {
-        SearchPage searchPage = new SearchPage(precondition.driver);
         searchPage.clickBtnSearch();
     }
 
-    @Дано("^текст для ввода (.*)$")
-    public void textForInput(String text) {
-        this.userName = text;
-    }
-
-    @Когда("^ввести текст в поле для поиска$")
-    public void inputText() {
-        SearchPage searchPage = new SearchPage(precondition.driver);
-        searchPage.clickTextAreaAndInputText(userName);
-    }
-
-    @Дано("^если нет совпадений то выводится текст сообщения (.*)$")
-    public void textMessage(String text) {
-        this.textMessage = text;
-    }
-
-    @Тогда("^проверяем есть ли совпадения$")
-    public void clickOnTheProposedOption(){
-        SearchPage searchPage = new SearchPage(precondition.driver);
-        Assert.assertEquals(userName,searchPage.getUserName(userName));
-    }
-
-    @Когда("^выйти из браузера после проверки поиска$")
-    public void quitBrowser() {
-        SearchPage searchPage = new SearchPage(precondition.driver);
+    @Когда("^ввести текст (.+) в поле для поиска и проверить есть ли совпадения$")
+    public void inputText(String text) {
+        searchPage.clickTextAreaAndInputText(text);
+        Assert.assertEquals(text,searchPage.getUserName(text));
         searchPage.quitBrowser();
     }
 }
