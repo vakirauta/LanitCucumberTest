@@ -3,5 +3,5 @@ hooks\CategoryPage.class
 hooks\SearchPage.class
 hooks\UsersPage.class
 hooks\ProfilePage.class
-authorizationSteps\GetDriver.class
 hooks\ThemePage.class
+retryingFindClick\RetryingFindClick.class

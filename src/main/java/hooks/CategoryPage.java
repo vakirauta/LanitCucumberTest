@@ -62,7 +62,6 @@ public class CategoryPage {
   public void clickTopic() {
     WebElement element = driver.findElement(selectTopic);
     element.click();
-    driver.quit();
   }
 
   public void quitBrowser() {

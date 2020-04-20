@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.By.xpath;
 
 public class AuthorizationPage{
-
-  private final WebDriver driver;
+  private WebDriver driver;
 
   private By btnLog = xpath("//button[text()='Войти']");
   private By formLogin = xpath("//input[@id='id_username']");
@@ -25,16 +24,14 @@ public class AuthorizationPage{
   }
 
   public void getButton() {
-    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebDriverWait wait = new WebDriverWait(driver, 10);
     WebElement element = wait.until(ExpectedConditions.visibilityOf(driver.findElement(btnLog)));
     element.click();
   }
 
   public void assertFormAuthorization() {
-    WebDriverWait wait = new WebDriverWait(driver, 30);
-    WebElement element1 =
-        wait.until(ExpectedConditions.presenceOfElementLocated(formAuthorization));
-    Assert.assertNotNull(element1);
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+    wait.until(ExpectedConditions.presenceOfElementLocated(formAuthorization));
   }
 
   public String inputLogin(String login) {
@@ -55,7 +52,7 @@ public class AuthorizationPage{
   }
 
   public void assertIconProfile() {
-    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebDriverWait wait = new WebDriverWait(driver, 10);
     WebElement element1 = wait.until(ExpectedConditions.presenceOfElementLocated(iconProfile));
     Assert.assertNotNull(element1);
     driver.quit();

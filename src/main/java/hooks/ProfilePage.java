@@ -10,9 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.xpath;
 
-public class ProfilePage {
-
-  private final WebDriver driver;
+public class ProfilePage{
+  private WebDriver driver;
 
   public String login = "Alexandr11";
   public String pass = "1ybrjkfc89";
@@ -40,7 +39,8 @@ public class ProfilePage {
   }
 
   public void clickSubmit(WebDriver driver) {
-    WebElement element = driver.findElement(btnEntry);
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(btnEntry));
     element.click();
   }
 
@@ -51,26 +51,27 @@ public class ProfilePage {
   }
 
   public void clickBtnChangeAvatar() {
-    WebElement element = driver.findElement(btnChangeAvatar);
+    WebDriverWait wait = new WebDriverWait(driver,10);
+    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(btnChangeAvatar));
     Assert.assertTrue(element.isDisplayed());
     element.click();
 
   }
 
   public void clickBtnGenerateIndividualAvatar() {
-    WebElement element = driver.findElement(btnGenerateIndividualAvatar);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(btnGenerateIndividualAvatar));
     element.click();
   }
 
   public String setTextAlert() {
     WebDriverWait wait = new WebDriverWait(driver, 30);
-    WebElement element1 = wait.until(ExpectedConditions.elementToBeClickable(alert));
+    WebElement element1 = wait.until(ExpectedConditions.visibilityOfElementLocated(alert));
     return element1.getText();
   }
 
   public void clickBtnExit() {
     WebElement element = driver.findElement(btnExit);
-    Assert.assertTrue(element.isDisplayed());
     element.click();
     driver.switchTo().alert().accept();
   }
@@ -78,10 +79,9 @@ public class ProfilePage {
   public void assertDisplayIconProfile() {
     WebElement element = driver.findElement(btnProfile);
     Assert.assertNotNull(element);
-    driver.quit();
   }
 
-  public void quitBrowser() {
+    public void quitBrowser() {
     driver.quit();
   }
 }

@@ -2,13 +2,15 @@ package hooks;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import retryingFindClick.RetryingFindClick;
 
 import static org.openqa.selenium.By.xpath;
 
-public class SearchPage{
-  private final WebDriver driver;
+public class SearchPage extends RetryingFindClick {
+  private WebDriver driver;
 
   public String login = "Alexandr11";
   public String pass = "1ybrjkfc89";
@@ -39,9 +41,7 @@ public class SearchPage{
   }
 
   public void clickBtnSearch() {
-    driver.navigate().refresh();
-    WebElement element = driver.findElement(btnSearch);
-    element.click();
+    retryingFindClick(driver,btnSearch);
   }
 
   public void clickTextAreaAndInputText(String text) {

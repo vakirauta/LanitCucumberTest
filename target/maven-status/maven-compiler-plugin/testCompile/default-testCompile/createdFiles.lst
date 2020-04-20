@@ -6,6 +6,7 @@ steps\StepsSearchTest.class
 steps\StepsCreateNewTheme.class
 steps\StepsAuthorization.class
 steps\StepsExitProfile.class
+steps\Hook.class
 steps\StepsChangeAvatar.class
 test\CucumberTest.class
 steps\StepsEditTopic.class

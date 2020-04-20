@@ -1,15 +1,18 @@
 package hooks;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import retryingFindClick.RetryingFindClick;
 
 import static org.openqa.selenium.By.*;
 
-public class ThemePage{
-
+public class ThemePage extends RetryingFindClick {
   private WebDriver driver;
+
+  public ThemePage(WebDriver driver) {
+    this.driver = driver;
+  }
 
   public String login = "Alexandr11";
   public String pass = "1ybrjkfc89";
@@ -18,21 +21,20 @@ public class ThemePage{
   private By formLogin = xpath("//input[@id='id_username']");
   private By formPass = xpath("//input[@id='id_password']");
   private By btnEntry = xpath("//button[@type='submit']");
-  private By btnMy = xpath("//div[@id='page-mount']//li[2]/a");
+  private By btnMy = xpath("//div[@class='page-header-bg']//li[2]//a[1]");
   private By tabTheme = xpath("//a[contains(text(),'Темы')]");
   private By btnEdit = xpath("//button[@class='hidden-xs btn btn-default btn-sm pull-right']");
   private By textArea = xpath("//textarea[@id='editor-textarea']");
-  private By btnNew = xpath("//a[contains(text(),'Новые')]");
-  private By btnLike = xpath("//button[text()='Лайк']");
-  private By selectTopic = xpath("//a[@class='item-title thread-title']");
-  private By btnAnswer = xpath("//button[@class='btn btn-primary btn-sm pull-right']");
+  private By btnNew = xpath("//div[@class='page-header-bg']//li[3]//a[1]");
+  private By btnLike = xpath("//div[@class='post-footer']//button[1]");
+  private By selectTopic = xpath("//div[2]/a");
+  private By btnAnswer = xpath("//button[@class='btn btn-primary btn-block btn-outline']");
   private By formBody = xpath("//textarea[@id='editor-textarea']");
-  private By btnSendAnswer = xpath("//button[text()='Отправить ответ']");
   private By btnNewTheme = xpath("//button[text()='Новая тема']");
   private By enterText = xpath("//input[@placeholder='Заголовок темы']");
   private By enterFieldText = id("editor-textarea");
   private By btnPublish = xpath("//button[text()='Опубликовать тему']");
-  private By btnLikeText = xpath("//button[text()='Нравится']");
+  private By btnLikeText = xpath("//button[@class='btn btn-success btn-sm pull-left']");
 
   public void authorization() {
     WebElement element = driver.findElement(btnLog);
@@ -52,30 +54,17 @@ public class ThemePage{
     element.click();
   }
 
-  public void clickTabTheme() {
-    driver.navigate().refresh();
-    WebElement element = driver.findElement(tabTheme);
-    Assert.assertTrue(element.isDisplayed());
-    element.click();
-  }
-
   public void clickTabThemes() {
-    driver.navigate().refresh();
-    WebElement element = driver.findElement(tabTheme);
-    Assert.assertTrue(element.isDisplayed());
-    element.click();
+    retryingFindClick(driver,tabTheme);
   }
 
   public void clickNewTopic() {
     WebElement element = driver.findElement(selectTopic);
-    Assert.assertNotNull(element);
     element.click();
   }
 
   public void clickBtnLike() {
-    driver.navigate().refresh();
-    WebElement element = driver.findElement(btnLike);
-    element.click();
+    retryingFindClick(driver,btnLike);
   }
 
   public String assertBtnText() {
@@ -84,34 +73,22 @@ public class ThemePage{
   }
 
   public void clickTopic() {
-    driver.navigate().refresh();
-    WebElement element = driver.findElement(selectTopic);
-    Assert.assertNotNull(element);
-    element.click();
+    retryingFindClick(driver,selectTopic);
   }
 
   public void clickBtnAnswer() {
-    driver.navigate().refresh();
-    WebElement element = driver.findElement(btnAnswer);
-    Assert.assertNotNull(element);
-    element.click();
+    driver.findElement(btnAnswer).click();
   }
 
   public void inputTextAnswer(String text) {
     WebElement element = driver.findElement(formBody);
     element.clear();
     element.sendKeys(text);
-  }
-
-  public void clickBtnSendAnswer() {
-    WebElement element = driver.findElement(btnSendAnswer);
-    Assert.assertNotNull(element);
-    element.click();
+    element.submit();
   }
 
   public String assertSentMessage(String text) {
     WebElement element = driver.findElement(xpath(String.format("//p[text()='%s']", text)));
-    Assert.assertTrue(element.isDisplayed());
     return element.getText();
   }
 
@@ -138,14 +115,9 @@ public class ThemePage{
   }
 
   public void assertNewTheme() {
-    clickTabTheme();
+    clickTabThemes();
     WebElement element = driver.findElement(selectTopic);
     Assert.assertNotNull(element);
-    driver.quit();
-  }
-
-  public ThemePage(WebDriver driver) {
-    this.driver = driver;
   }
 
   public void clickBtnMy() {

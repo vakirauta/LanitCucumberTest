@@ -1,14 +1,14 @@
 package hooks;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import retryingFindClick.RetryingFindClick;
 
 import static org.openqa.selenium.By.xpath;
 
-public class UsersPage {
-  private final WebDriver driver;
+public class UsersPage extends RetryingFindClick {
+  private WebDriver driver;
 
   public String login = "Alexandr11";
   public String pass = "1ybrjkfc89";
@@ -39,23 +39,17 @@ public class UsersPage {
   }
 
   public void clickBtnUsers() {
-    driver.navigate().refresh();
-    WebElement element = driver.findElement(btnUsers);
-    Assert.assertTrue(element.isDisplayed());
-    element.click();
+    retryingFindClick(driver,btnUsers);
   }
 
   public void clickTopPosters() {
     WebElement element = driver.findElement(btnTopPosters);
-    Assert.assertTrue(element.isDisplayed());
     element.click();
   }
 
   public void clickForumTeam() {
     WebElement element = driver.findElement(btnForumTeam);
-    Assert.assertTrue(element.isDisplayed());
     element.click();
-    driver.quit();
   }
 
   public void quitBrowser() {
