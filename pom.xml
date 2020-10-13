@@ -12,7 +12,7 @@
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
          		<cucumber.version>1.2.5</cucumber.version>
          		<cucumber.junit.version>1.2.4</cucumber.junit.version>
-         		<junit.version>4.12</junit.version>
+         		<junit.version>4.13.1</junit.version>
          		<selenium.java.version>3.141.59</selenium.java.version>
          		<selenium.server.version>3.141.59</selenium.server.version>
          		<maven-compiler-plugin>3.2</maven-compiler-plugin>
@@ -81,7 +81,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.13</version>
+				<version>4.13.1</version>
 			</dependency>
 		</dependencies>
 
